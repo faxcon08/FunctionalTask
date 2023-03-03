@@ -56,12 +56,7 @@ public class Main {
         }
     }
     public static void main(String[] args) {
-        /*String s = "son space space hi they and he home hi and and true";
-        printStatistic(s);*/
         runInput();
-        //flatMap(x->x.getValue().stream()).map(x->x.getKey()).forEach(x->System.out.println(x+" - "+x.getClass()));
-
-
     }// main
 
 }
