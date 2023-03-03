@@ -5,10 +5,9 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
-    public static void main(String[] args) {
-        String s = "son space space hi they and he home hi and and true";
+    private static void printStatistic(String inputString) {
         Map<String, Integer> map;
-        map=Arrays.stream(s.split("\\s")).collect(HashMap::new,(m,c)->{
+        map=Arrays.stream(inputString.split("\\s")).collect(HashMap::new,(m,c)->{
             if(m.containsKey(c))
                 m.put(c,m.get(c)+1);
             else
@@ -31,7 +30,35 @@ public class Main {
             return z.getKey().compareTo(k.getKey());
         }).collect(Collectors.toList())).flatMap(x->x.stream()).collect(Collectors.toList());
         list.stream().limit(10).forEach(x->System.out.println(x.getValue()+" - "+x.getKey()));
+    }
 
+    private static void runInput() {
+        String inputString;
+        try (Scanner scanner = new Scanner(System.in)) {
+            boolean flag = true;
+            //System.out.println("Введите строку для подсчета совпадений: (для выхода введите exit)");
+            do {
+                System.out.println("Введите строку для подсчета совпадений: (для выхода введите exit)");
+                inputString=scanner.nextLine();
+                if (inputString.isBlank()) {
+                    System.out.println("Error: введена пустая строка. Попробуйте еще или введите exit");
+                    continue;
+                }
+                if (inputString.trim().toLowerCase().compareTo("exit")==0){
+                    System.out.println("EXIT confirm");
+                    flag=false;
+                    break;
+                }else {
+                    printStatistic(inputString);
+                    System.out.println("----------------------------------------------");
+                }
+            }while (true);
+        }
+    }
+    public static void main(String[] args) {
+        /*String s = "son space space hi they and he home hi and and true";
+        printStatistic(s);*/
+        runInput();
         //flatMap(x->x.getValue().stream()).map(x->x.getKey()).forEach(x->System.out.println(x+" - "+x.getClass()));
 
 
